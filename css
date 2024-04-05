@@ -51,9 +51,22 @@ picture {
   margin: 0;
 }
 
-/* Body Set Up */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+}
+
+/* Body Set Up replace NAMEs*/
 body {
   font-family: var(--NAME);
+  font-size: var(--fs-400);
+  color: hsl( var(--NAME) );
+  background-color: hsl( var(--NAME) );
   line-height: 1.5;
   min-height: 100vh;
 }
