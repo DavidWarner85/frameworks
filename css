@@ -1,4 +1,5 @@
 /* Custom Properties */
+/* ------------------------------------------------------------------------------------------------------------------- */
 
 :root {
   /* Colors */
@@ -27,6 +28,7 @@
 --NAME: "NAME, NAME";
 
 /* Reset --DON'T TOUCH*/
+/* ------------------------------------------------------------------------------------------------------------------- */
 
 /* Box Sizing */
 
@@ -99,6 +101,7 @@ select {
 }
 
 /* Utility Classes */
+/* ------------------------------------------------------------------------------------------------------------------- */
 
 .flex {
   display: flex;
@@ -108,6 +111,10 @@ select {
 .grid {
   display: grid;
   gap: var(--gap, 1rem;
+}
+
+.flow > *:where(not(:first-child)) {
+  margin-top: var(--flow-space, 1rem);
 }
 
 .container {
@@ -159,10 +166,69 @@ select {
   line-height: 1:1;
 }
 
+/* Components */
+/* ------------------------------------------------------------------------------------------------------------------- */
+
+.large-button {
+  position: relative;
+  display: grid;
+  z-index: 1;
+  place-items: center;
+  padding: 0 2em;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  text-decoration: none;
+}
+
+.large-button::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  background: hsl(var(NAME)/.15;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 350ms linear, transform 500ms easi-in-out;
+}
+  
+.large-button:hover::after,
+.large-button:focus:after {
+  transform:scale(1.5);
+}
+
+.primary-nav {
+  --gap: 8rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.prmary-nav a {
+ text-decoration: none;
+}
+
+.prmary-nav a > span {
+  font-weight:700;
+  margin-right: .5em;
+}
+
+.underline-indicators > * {
+  padding: var(--underline-gap, 1rem) 0;
+  border-bottom: .2rem solid hsl( var(NAME) / 0 );
+}
+
+.underline-indicators > *:hover,
+.underline-indicators > *:focus {
+  border-color: hsl( var(NAME) / .5 );
+}
+
+.underline-indicators > *:active {
+    border-color: hsl( var(NAME) / 1 );
+}
 
 
-
-/**
+  /**
  * Set the link color to black
  */
 
