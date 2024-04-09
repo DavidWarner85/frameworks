@@ -1,28 +1,25 @@
 /* Custom Properties */
 /* ------------------------------------------------------------------------------------------------------------------- */
 
+/* Account for dark mode. */
 :root {
+  color-scheme: light dark;
   /* Colors */
-  /* --NAME: HSL CODE; */
+
+  --dark: 000000;
+  --light: ffffff;
 }
 
-/* Invert the colors if the user has dark mode activated. */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-  /* --NAME: HSL CODE; */
-  }
-}
 
 /* font-sizes */
---fs-900: 9.375rem;
+.fs-900 (9.375rem;)
 --fs-800: 6.25rem;
 --fs-700: 3.5rem;
 --fs-600: 2rem;
 --fs-500: 1.75rem;
 --fs-400: 1.25rem;
 --fs-300: 1rem;
---fs-200: .875rem;
+--fs-200: 0.875rem;
 
 /* font-families replace NAMEs*/
 --NAME: "NAME, NAME";
@@ -63,12 +60,12 @@ p {
   font-weight: 400;
 }
 
-/* Body Set Up replace NAMEs*/
+/* Body Set Up replace FONT-FAMILY*/
 body {
   font-family: var(--NAME);
   font-size: var(--fs-400);
-  color: hsl( var(--NAME) );
-  background-color: hsl( var(--NAME) );
+  color: light-dark(--light, --dark);
+  background-color: light-dark(--dark, --light);
   line-height: 1.5;
   min-height: 100vh;
 }
@@ -105,12 +102,12 @@ select {
 
 .flex {
   display: flex;
-  gap: var(--gap, 1rem;
+  gap: var(--gap, 1rem;)
 }
 
 .grid {
   display: grid;
-  gap: var(--gap, 1rem;
+  gap: var(--gap, 1rem;)
 }
 
 .flow > *:where(not(:first-child)) {
@@ -184,7 +181,7 @@ select {
   content: '';
   position: absolute;
   z-index: -1;
-  background: hsl(var(NAME)/.15;
+  background: hsl(var(NAME)/.15;)
   width: 100%;
   height: 100%;
   border-radius: 50%;
