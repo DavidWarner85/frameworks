@@ -215,6 +215,8 @@ select {
 
 .underline-indicators > * {
   padding: var(--underline-gap, 1rem) 0;
+  border: 0;
+  cursor: pointer
   border-bottom: .2rem solid hsl( var(NAME) / 0 );
 }
 
@@ -223,9 +225,17 @@ select {
   border-color: hsl( var(NAME) / .5 );
 }
 
-.underline-indicators > *:active {
-    border-color: hsl( var(NAME) / 1 );
+.underline-indicators > *:active,
+.underline-indicators> [aria-selected="true"] {
+  color: hsl( var(NAME) / 1 );
+  border-color: hsl( var(NAME) / 1 );
 }
+
+.tab-list {
+  --gap: 2rem;
+}
+
+
 
 
   /**
