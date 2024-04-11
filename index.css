@@ -1,7 +1,129 @@
-/* Components */
-/* ------------------------------------------------------------------------------------------------------------------- */
+/* Custom Properties */
+/* ----------------- */
 
-.large-button {
+/* Colors */
+/* Account for dark mode. */
+:root {
+    color-scheme: light dark;
+    --dark: 000000;
+    --light: ffffff;
+    --ocean: #4f42b5;
+    --grass: #7CFC00;
+    --sunlight: #FDB813;
+    --flame: #e25822;
+  }
+
+/* Body Set Up */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.25rem;
+  color: light-dark(--light, --dark);
+  background-color: light-dark(--dark, --light);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Typeface */
+h1,h2,h3,h4,h5,h6 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1,h2,h3 {
+    font-weight: bold;
+    letter-spacing: .05em;
+    line-height: 2em;
+}
+
+h1 { font-size: 6vw;}
+h2 { font-size: 3vw;}
+h3 { font-size: 2vw;}
+h4 { font-size: 1.5vw;}
+h5 { font-size: 1.25vw;}
+h6 { font-size: 1vw;}
+/* Reset --DON'T TOUCH*/
+/* ----------------- */
+
+/* Box Sizing */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Reset Margins */
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  font-weight: 400;
+}
+
+
+  
+  /* Simplify Images */
+  img,
+  picture {
+    max-width: 100%;
+    display: block;
+  }
+  
+  /* Simplify Form Elements */
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+  
+  /* Remove animations by setting */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+  }
+/* Utility Classes */
+/* ----------------- */
+.uppercase { text-transform: uppercase; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line*/
+  border: 0;
+}
+
+/* Components */
+/* ----------------- */
+
+.button {
   position: relative;
   display: grid;
   z-index: 1;
@@ -11,22 +133,27 @@
   aspect-ratio: 1/1;
   text-decoration: none;
 }
-
-.large-button::after {
+.button::after {
   content: '';
   position: absolute;
   z-index: -1;
-  background: hsl(var(NAME)/.15;)
+  background: hsl(var(--dark)/.15);
   width: 100%;
   height: 100%;
   border-radius: 50%;
   opacity: 0;
   transition: opacity 350ms linear, transform 500ms easi-in-out;
 }
-  
-.large-button:hover::after,
-.large-button:focus:after {
+button:hover::after,
+.button:focus:after {
   transform:scale(1.5);
+}
+button:disabled,
+input[type="button"]:disabled,
+input[type="reset"]:disabled,
+input[type="submit"]:disabled{
+  border-style: dashed;
+  cursor: not-allowed;
 }
 
 .primary-nav {
@@ -35,38 +162,33 @@
   padding: 0;
   margin: 0;
 }
-
 .prmary-nav a {
  text-decoration: none;
 }
-
 .prmary-nav a > span {
   font-weight:700;
   margin-right: .5em;
 }
 
 .underline-indicators > * {
-  padding: var(--underline-gap, 1rem) 0;
+  padding: 0;
   border: 0;
-  cursor: pointer
-  border-bottom: .2rem solid hsl( var(NAME) / 0 );
+  cursor: pointer;
+  border-bottom: .2rem solid hsl( var(--dark) / 0 );
 }
-
 .underline-indicators > *:hover,
 .underline-indicators > *:focus {
-  border-color: hsl( var(NAME) / .5 );
+  border-color: hsl( var(-dark) / .5 );
 }
-
 .underline-indicators > *:active,
 .underline-indicators> [aria-selected="true"] {
   color: hsl( var(NAME) / 1 );
-  border-color: hsl( var(NAME) / 1 );
+  border-color: hsl( var(-dark) / 1 );
 }
 
-.tab-list {
-  --gap: 2rem;
+.dot-indicators > [aria-selected="true"] {
+  background-color: hsl( var(--light) / 1 );
 }
-
 .dot-indicators > * {
   cursor: pointer;
   border: 0;
@@ -75,7 +197,6 @@
   padding: .5rem;
   background-color: hsl( var(NAME) / .25 )
 }
-
 .dot-indicators > *:hover,
 .dot-indicators > *:focus {
   cursor: pointer;
@@ -86,308 +207,40 @@
   background-color: hsl( var(NAME) / .5 )
 }
 
-.dot-indicators > [aria-selected="true"] {
-  background-color: hsl( var(NAME) / 1 );
+ /* Link States */
+ a:link {
+  color: var(--flame);
+}
+a:visited {
+  color: var(--grass);
+}
+a:hover {
+  color: var(--ocean);
+}
+a:active {
+  color: var(--sunlight);
 }
 
-
-
-
-
-
-
-  /**
- * Set the link color to black
- */
-
-a {
-  color: var(--fg);
-}
-
-
-
-/** 
- * 1. Center the main element horizontally.
- * 2. Set the width of the element to 640px, with padding for mobile screens.
- */
-
-main {
-  margin: auto; /* 1 */
-  max-width: 66rem; /* 2 */
-  padding: 0 1rem; /* 2 */
-  width: 100%; /* 2 */
-}
-
-/**
- * 1. Add some padding around the header.
- * 2. Increase the size of text in the header.
- */
-
-header {
-  padding: 16rem 0; /* 1 */
-  font-size: 1.2em; /* 2 */
-}
-
-/**
- * Center the text in the footer.
- */
-
-footer {
-  text-align: center;
-}
-
-/**
- * Add some padding around the sections.
- */
-
-section {
-  padding: 4rem 0;
-}
-
-/**
- * 1. Change the style of the button.
- * 2. Set the color and border of the button.
- * 3. Add the pointer cursor when hovering a button.
- */
-
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-  display: inline-block; /* 1 */
-  vertical-align: middle; /* 1 */
-  padding: .4rem 1rem; /* 1 */
-  font-size: 2rem; /* 1 */
-  font-weight: normal; /* 1 */
-  margin-bottom: 1rem; /* 1 */
-  background: var(--bg); /* 2 */
-  color: var(--fg); /* 2 */
-  border: .2rem solid var(--fg); /* 2 */
-  border-radius: 0; /* 2 */
-  cursor: pointer; /* 3 */
-}
-
-/**
- * 1. Set the border of a disabled button to be dashed.
- * 2. Add the not-allowed cursor when hovering a disabled button.
- */
-
-button:disabled,
-input[type="button"]:disabled,
-input[type="reset"]:disabled,
-input[type="submit"]:disabled{
-  border-style: dashed; /* 1 */
-  cursor: not-allowed; /* 2 */ 
-}
-
-/**
- * Set the list bullet to square.
- */
-
-ul {
-  list-style: square;
-}
-
-/**
- * Set the border around a fieldset.
- */
-
-fieldset {
-  border: .2rem solid var(--fg);
-}
-
-/**
- * 1. Modify the display of labels and legends.
- * 2. Add a margin underneath.
- */
-
-label, legend {
-  display: block; /* 1 */
-  font-weight: bold; /* 1 */
-  margin-bottom: .8rem; /* 2 */
-}
-
-/** 
- * 1. Change the appearance of the text input.
- * 2. Set the color and border of the text input.
- */
-
-input[type="email"],
-input[type="number"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-input[type="text"],
-input[type="url"],
-textarea,
-select {
-  -webkit-appearance: none; /* 1 */
-  -moz-appearance: none; /* 1 */
-  appearance: none; /* 1 */
-  box-shadow: none; /* 1 */
-  box-sizing: inherit; /* 1 */
-  padding: .4rem 1rem; /* 1 */
-  width: 100%; /* 1 */
-  font-size: 2rem; /* 1 */
-  color: var(--fg); /* 2 */
-  background-color: var(--bg); /* 2 */
-  border: .2rem solid var(--fg); /* 2 */
-  border-radius: 0; /* 2 */
-}
-
-/**
- * Set margin for form elements.
- */
-
-fieldset, input, select, textarea {
-  margin: 0 0 1.6rem 0;
-}
-
-/**
- * 1. Set the font color for the placeholder in inputs.
- * 2. Set font-style to italic for the placeholder in inputs.
- */
-
-input::placeholder,
-textarea::placeholder {
-  color: var(--fg); /* 1 */
-  font-style: italic; /* 2 */
-}
-
-/**
- * 1. Expand width to 100% for the table element.
- * 2. Remove the distance between the borders of adjacent table cells.
- */
-
-table {
-  width: 100%; /* 1 */
-  border-spacing: 0; /* 2 */
-}
-
-/**
- * Add padding around table cells.
- */
-
-td, th {
-  padding: .8rem;
-}
-
-/**
- * Remove left padding for first cell in a row.
- */
-
-td:first-child, th:first-child {
-  padding-left: 0;
-}
-
-/**
- * Remove right padding for last cell in a row.
- */
-
-td:last-child, th:last-child {
-  padding-right: 0;
-}
-
-/**
- * 1. Add a border under the table header.
- * 2. Align the text to the left in the table header.
- */
-
-th {
-  border-bottom: .2rem solid var(--fg); /* 1 */
-  text-align: left; /* 2 */
-}
-
-/**
- * Add a thiner border under table rows.
- */
-
-td {
-  border-bottom: .1rem solid var(--fg);
-}
-
-/**
- * 1. Change the margins and padding.
- * 2. Add a border on the left of these elements.
- * 3. Set the y overflow to hidden to hide the navigation bar.
- */
-
-blockquote, pre {
-  margin-left: 0; /* 1 */
-  margin-right: 0; /* 1 */
-  padding: 1rem 1.6rem; /* 1 */
-  border-left: .2rem solid var(--fg); /* 2 */
-  overflow-y: hidden; /* 3 */
-}
-
-/**
- * 1. Set the rest of the border of the preformatted element to dotted.
- * 2. Re-set the left border style.
- */
-
-pre {
-  border: 0.1rem dotted var(--fg);
-  border-left: 0.2rem solid var(--fg);
-}
-
-/**
- * 1. Modify the display of the code block.
- * 2. Reduce the font size of the code block.
- */
-
-pre > code {
-  white-space: pre; /* 1 */
-  display: block; /* 1 */
-  font-size: 1.6rem; /* 2 */
-}
-
-/**
- * 1. Modify the display of the progress bar in all browsers.
- * 2. Set the colors and border of the progress bar.
- */
-
+/* Progress Bar*/
 progress {
-  -moz-appearance: none; /* 1 */
-  -webkit-appearance: none; /* 1 */
-  display: block; /* 1 */
-  height: 1rem; /* 1 */
-  overflow: hidden; /* 1 */
-  padding: 0; /* 1 */
-  width: 100%; /* 1 */
-  background: var(--bg); /* 2 */
-  color: var(--fg); /* 2 */
-  border: .2rem solid var(--fg); /* 2 */
-  border-radius: 0; /* 2 */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  height: 1rem;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+  background: var(--light);
+  color: var(--fg);
+  border: .2rem solid var(--dark);
+  border-radius: 0;
 }
-
-/**
- * Set the background color of the webkit progress bar.
- */
-
 progress::-webkit-progress-bar {
-  background-color: var(--bg);
+  background-color: var(--dark);
 }
-
-/**
- * Set the color of the webkit progress bar.
- */
-
 progress::-webkit-progress-value {
-  background-color: var(--fg);
+  background-color: var(--light);
 }
-
-/**
- * Set the color of the mozilla progress bar.
- */
-
 progress::-moz-progress-bar {
-  background-color: var(--fg);
-}
-
-/**
- * Set the border for the horizontal rule.
- */
-
-hr {
-  border: .1rem solid var(--fg);
+  background-color: var(--light);
 }
